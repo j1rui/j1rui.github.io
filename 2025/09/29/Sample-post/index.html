@@ -171,30 +171,45 @@
             
                 
                     <style>
-  /* Current page number */
-  .pagination .page-number.current {
-    background-color: #1db5d6 !important;
-    color: #000 !important;
-    border: 1px solid #1db5d6;
+  /* =========================
+     Page Number Custom Colors
+     ========================= */
+  /* 1. Thay đổi biến CSS của theme */
+  :root {
+    --primary-color: #1db5d6;       /* Nền số hiện tại và hover */
+    --background-color: #000000;    /* Chữ số hiện tại */
   }
 
-  /* Other page numbers */
-  .pagination .page-number:not(.current) {
-    background-color: rgba(0, 0, 0, 0.3) !important;
+  /* 2. Selector chuẩn .paginator */
+  .paginator a.page-number,
+  .paginator span.page-number,
+  .paginator a.prev,
+  .paginator a.next {
+    color: #fff;                     /* chữ số bình thường */
+    background: rgba(0,0,0,0.3);    /* nền số bình thường */
+  }
+
+  /* 3. Hover & focus */
+  .paginator a.page-number:hover,
+  .paginator span.page-number:hover,
+  .paginator a.prev:hover,
+  .paginator a.next:hover {
     color: #fff !important;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    background: #1db5d6 !important;
   }
 
-  /* Hover effect */
-  .pagination .page-number:hover {
-    background-color: #1db5d6 !important;
-    color: #fff !important;
-    border-color: #1db5d6;
+  /* 4. Số hiện tại */
+  .paginator span.current {
+    color: #000 !important;          /* chữ số hiện tại */
+    background: #1db5d6 !important;  /* nền số hiện tại */
   }
 
-  /* Ensure text color for all states */
-  .pagination .page-number {
-    color: inherit !important;
+  /* 5. Icon next/prev (nếu dùng fontawesome) */
+  .paginator i.fa-regular {
+    color: #000; 
+  }
+  .paginator .extend:hover i.fa-regular {
+    color: #fff; 
   }
 </style>
 
