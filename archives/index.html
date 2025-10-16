@@ -164,6 +164,16 @@
     <!--- Inject Part-->
     
         
+            
+                
+                    <style>
+  :root {
+    --hover-color: #1db5d6 !important;
+  }
+</style>
+
+                
+    
 
     
 <link rel="stylesheet" href="/css/style.css">
@@ -526,36 +536,6 @@
         
         
             
-                
-
-                    
-                        <script data-swup-reload-script>
-  function applyHoverCSS(){
-    const style = document.createElement('style');
-    style.id = 'custom-hover-style';
-    style.innerHTML = `
-      :root { --hover-color: #1db5d6; }
-      .navbar a:hover, .sidebar a:hover, .home-banner .social-links a:hover,
-      .tag-link:hover, .category-link:hover, .post-title a:hover,
-      .paginator a.page-number:hover, .paginator span.page-number:hover,
-      .paginator a.prev:hover, .paginator a.next:hover,
-      .sidebar .widget a:hover,
-      .post a:hover, .post button:hover {
-        color: var(--hover-color) !important;
-        background: var(--hover-color) !important;
-      }
-    `;
-    const oldStyle = document.getElementById('custom-hover-style');
-    if(oldStyle) oldStyle.remove();
-    document.head.appendChild(style);
-  }
-
-  applyHoverCSS();
-  document.addEventListener('swup:contentReplaced', applyHoverCSS);
-</script>
-
-                    
-        
         
     </div>  
 </footer>
