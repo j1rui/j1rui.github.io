@@ -171,45 +171,64 @@
             
                 
                     <style>
-  /* =========================
-     Page Number Custom Colors
-     ========================= */
-  /* 1. Thay đổi biến CSS của theme */
+  /* ================================
+     Hover tất cả các phần có thể click
+     ================================ */
   :root {
-    --primary-color: #1db5d6;       /* Nền số hiện tại và hover */
-    --background-color: #000000;    /* Chữ số hiện tại */
+    --hover-color: #1db5d6;  /* màu xanh bạn muốn */
   }
 
-  /* 2. Selector chuẩn .paginator */
-  .paginator a.page-number,
-  .paginator span.page-number,
-  .paginator a.prev,
-  .paginator a.next {
-    color: #fff;                     /* chữ số bình thường */
-    background: rgba(0,0,0,0.3);    /* nền số bình thường */
+  /* Navbar link hover */
+  .navbar a:hover,
+  .navbar .submenus a:hover {
+    color: var(--hover-color) !important;
   }
 
-  /* 3. Hover & focus */
+  /* Sidebar link hover */
+  .sidebar a:hover {
+    color: var(--hover-color) !important;
+  }
+
+  /* Social links hover */
+  .home-banner .social-links a:hover {
+    color: var(--hover-color) !important;
+  }
+
+  /* Tags hover */
+  .tag-link:hover,
+  .category-link:hover {
+    color: var(--hover-color) !important;
+    border-color: var(--hover-color) !important;
+  }
+
+  /* Post title hover */
+  .post-title a:hover {
+    color: var(--hover-color) !important;
+  }
+
+  /* Pagination hover */
   .paginator a.page-number:hover,
   .paginator span.page-number:hover,
   .paginator a.prev:hover,
   .paginator a.next:hover {
     color: #fff !important;
-    background: #1db5d6 !important;
+    background: var(--hover-color) !important;
   }
 
-  /* 4. Số hiện tại */
-  .paginator span.current {
-    color: #000 !important;          /* chữ số hiện tại */
-    background: #1db5d6 !important;  /* nền số hiện tại */
+  /* Sidebar widgets hover */
+  .sidebar .widget a:hover {
+    color: var(--hover-color) !important;
   }
 
-  /* 5. Icon next/prev (nếu dùng fontawesome) */
-  .paginator i.fa-regular {
-    color: #000; 
+  /* Buttons, links inside posts */
+  .post a:hover,
+  .post button:hover {
+    color: var(--hover-color) !important;
   }
-  .paginator .extend:hover i.fa-regular {
-    color: #fff; 
+
+  /* Hiệu ứng mượt */
+  a, button, .tag-link, .category-link {
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
   }
 </style>
 
