@@ -167,9 +167,23 @@
             
                 
                     <style>
+
+/* GIẢM CỠ CHỮ TIÊU ĐỀ BÀI VIẾT */
+.article-title {
+  font-size: 2.2rem !important; /* Bạn có thể chỉnh xuống 1.8rem nếu muốn nhỏ hơn nữa */
+  line-height: 1.2 !important;
+}
+
+/* ẨN NGÀY UPDATE (Nếu chỉnh config hexo chưa được) */
+.article-meta-info .updated {
+  display: none !important;
+}
+
+
+
   /* =========================
-     Page Number Custom Colors
-     ========================= */
+    Page Number Custom Colors
+    ========================= */
   /* 1. Thay đổi biến CSS của theme */
   :root {
     --primary-color: #1db5d6;       /* Nền số hiện tại và hover */
