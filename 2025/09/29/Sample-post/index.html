@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Hexo Theme Redefine">
     
-    <meta name="author" content="Finn">
+    <meta name="author" content="Zywoo">
     
     <!-- Completely eliminate flash of wrong theme -->
     <script>
@@ -140,7 +140,6 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zyw0oz.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-09-29T01:39:33.000Z">
-<meta property="article:modified_time" content="2025-09-29T03:07:05.678Z">
 <meta property="article:author" content="Redefine Team">
 <meta property="article:tag" content="ctf">
 <meta property="article:tag" content="web">
@@ -157,7 +156,7 @@
     
     <title>
         
-            Sample post | Finn Blog
+            Sample post | Zywoo Blog
         
     </title>
 
@@ -170,12 +169,43 @@
         
             
                 
-                    <style>
+                    <style> 
+/* 1. XÓA TRIỆT ĐỂ Ở TRANG CHỦ (Home) */
+/* Ẩn cả cụm ngày tháng và icon lịch */
+.home-article-meta-info .home-article-item.date,
+.home-article-meta-info .home-article-date,
+.home-article-meta-info i.fa-calendar,
+.home-article-meta-info i.fa-calendar-days {
+    display: none !important;
+}
 
-/* GIẢM CỠ CHỮ TIÊU ĐỀ BÀI VIẾT */
+/* 2. XÓA TRIỆT ĐỂ BÊN TRONG BÀI VIẾT (Post Meta) */
+/* Ẩn ngày tạo (pen-nib) và ngày update (wrench) */
+.article-meta-info .article-meta-item.date,
+.article-meta-info .article-meta-item.updated,
+.article-meta-info .article-meta-item i.fa-pen-nib,
+.article-meta-info .article-meta-item i.fa-wrench {
+    display: none !important;
+}
+
+/* 3. FIX TIÊU ĐỀ (Nhỏ lại cho cân đối) */
 .article-title {
-  font-size: 2.2rem !important; /* Bạn có thể chỉnh xuống 1.8rem nếu muốn nhỏ hơn nữa */
-  line-height: 1.2 !important;
+    font-size: 1.8rem !important;
+    line-height: 1.3 !important;
+}
+
+/* 3. ĐIỀU CHỈNH TIÊU ĐỀ (Title) */
+/* Giảm cỡ chữ xuống 1.8rem để nhìn chuyên nghiệp hơn */
+.article-title, .home-article-title {
+    font-size: 1.8rem !important;
+    line-height: 1.3 !important;
+}
+
+/* 4. CĂN CHỈNH KHOẢNG CÁCH */
+/* Đẩy Category và Tags sang trái sau khi đã ẩn ngày */
+.article-meta-info, .home-article-meta-info {
+    justify-content: flex-start !important;
+    gap: 12px !important;
 }
 
 /* ẨN NGÀY UPDATE (Nếu chỉnh config hexo chưa được) */
@@ -272,7 +302,7 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"zyw0oz.github.io","root":"/","language":"en"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#1db5d6","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":false},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":false,"site_uv":false,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":false,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"try with your all heart and soul"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/PokemonSea1.webp"},"title":"I'm penetration tester","subtitle":{"text":["WELCOME =.="],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/Ous3n?tab=repositories","instagram":null,"zhihu":null,"twitter":null,"email":"phong2312005@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Love Yourself","artist":null,"url":"/musics/riverflowsinyou.mp3","cover":"/images/lookChillChill.jpg","lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#27149b","right":"#367df7","transparency":10},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/EvanNotFound/hexo-theme-redefine","Blog":"https://ohevan.com","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":false};
+    window.theme = {"articles":{"post_meta":{"created_at":false,"updated_at":false},"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#1db5d6","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":false},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":false,"site_uv":false,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":false,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"try with your all heart and soul"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/PokemonSea1.webp"},"title":"I'm penetration tester","subtitle":{"text":["WELCOME =.="],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/Zyw0oz?tab=repositories","instagram":null,"zhihu":null,"twitter":null,"email":"phong2312005@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Love Yourself","artist":null,"url":"/musics/riverflowsinyou.mp3","cover":"/images/lookChillChill.jpg","lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#27149b","right":"#367df7","transparency":10},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/EvanNotFound/hexo-theme-redefine","Blog":"https://ohevan.com","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":false};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -379,7 +409,7 @@
 
 <div class="preloader">
     <h2 class="ml13">
-        Finn Blog
+        Zywoo Blog
     </h2>
     <script>
         var textWrapper = document.querySelector('.ml13');
@@ -468,12 +498,12 @@
         <div class="left">
             
                 <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
-                    <img src="/images/ChatGPT%20Image%20Apr%202,%202026,%2010_53_05%20PM.png" class="w-full h-full rounded-xs">
+                    <img src="/images/dogswim.jpg" class="w-full h-full rounded-xs">
                 </a>
             
             <a class="logo-title" href="/">
                 
-                Finn Blog
+                Zywoo Blog
                 
             </a>
         </div>
@@ -672,11 +702,11 @@
 		
 		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
 			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-				<img src="/images/finn.jpg">
+				<img src="/images/chanDoi.jpg">
 			</div>
 			<div class="info flex flex-col justify-between">
 				<div class="author flex items-center">
-					<span class="name text-default-text-color text-lg font-semibold">Finn</span>
+					<span class="name text-default-text-color text-lg font-semibold">Zywoo</span>
 					
 				</div>
 				<div class="meta-info">
@@ -687,13 +717,6 @@
         <span class="mobile">2025-09-29 08:39:33</span>
         <span class="hover-info">Created</span>
     </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-09-29 10:07:05</span>
-            <span class="mobile">2025-09-29 10:07:05</span>
-            <span class="hover-info">Updated</span>
-        </span>
     
 
     
@@ -816,7 +839,7 @@
         <div class="text-center">
             &copy;
             
-            2026&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Finn</a>
+            2026&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Zywoo</a>
             
         </div>
         
