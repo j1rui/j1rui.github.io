@@ -170,77 +170,64 @@
         
             
                 
-                    <style> 
-/* 1. XÓA TRIỆT ĐỂ Ở TRANG CHỦ (Home) */
-/* Ẩn cả cụm ngày tháng và icon lịch */
-.home-article-meta-info .home-article-item.date,
-.home-article-meta-info .home-article-date,
-.home-article-meta-info i.fa-calendar,
-.home-article-meta-info i.fa-calendar-days {
-    display: none !important;
-}
-
-/* 2. XÓA TRIỆT ĐỂ BÊN TRONG BÀI VIẾT (Post Meta) */
-/* Ẩn ngày tạo (pen-nib) và ngày update (wrench) */
-.article-meta-info .article-meta-item.date,
-.article-meta-info .article-meta-item.updated,
-.article-meta-info .article-meta-item i.fa-pen-nib,
-.article-meta-info .article-meta-item i.fa-wrench {
-    display: none !important;
-}
-
-/* 3. FIX TIÊU ĐỀ (Nhỏ lại cho cân đối) */
-.article-title {
-    font-size: 1.8rem !important;
-    line-height: 1.3 !important;
-}
-
-/* 3. ĐIỀU CHỈNH TIÊU ĐỀ (Title) */
-/* Giảm cỡ chữ xuống 1.8rem để nhìn chuyên nghiệp hơn */
-.article-title, .home-article-title {
-    font-size: 1.8rem !important;
-    line-height: 1.3 !important;
-}
-
-/* 4. CĂN CHỈNH KHOẢNG CÁCH */
-/* Đẩy Category và Tags sang trái sau khi đã ẩn ngày */
-.article-meta-info, .home-article-meta-info {
-    justify-content: flex-start !important;
-    gap: 12px !important;
-}
-
-/* ẨN NGÀY UPDATE (Nếu chỉnh config hexo chưa được) */
-.article-meta-info .updated {
-  display: none !important;
-}
-
-
-
-  /* =========================
-    Page Number Custom Colors
-    ========================= */
-  /* 1. Thay đổi biến CSS của theme */
-  :root {
-    --primary-color: #1db5d6;       /* Nền số hiện tại và hover */
-    --background-color: #000000;    /* Chữ số hiện tại */
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/eva-min.min.css">
+<style> 
+  body .highlight-container {
+      border-radius: 12px !important;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+      margin: 20px 0 !important;
+      background: #2d343d !important;
+      border: none !important;
   }
-
-
-
-
-  /* 2. Selector chuẩn .paginator */
+  body .highlight-container pre code.hljs {
+      background: transparent !important;
+      color: #9fa7b3 !important;
+      padding: 1.2em !important;
+      font-family: 'JetBrains Mono', monospace !important;
+  }
+  body .highlight-container figcaption {
+      background: #23282f !important;
+      color: #1db5d6 !important;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+  }
+  body .highlight-container .gutter {
+      display: none !important;
+  }
+  body .highlight-container .code {
+      padding-left: 20px !important;
+  }
+  .home-article-meta-info .home-article-item.date,
+  .home-article-meta-info .home-article-date,
+  .home-article-meta-info i.fa-calendar,
+  .home-article-meta-info i.fa-calendar-days,
+  .article-meta-info .article-meta-item.date,
+  .article-meta-info .article-meta-item.updated,
+  .article-meta-info .article-meta-item i.fa-pen-nib,
+  .article-meta-info .article-meta-item i.fa-wrench {
+      display: none !important;
+  }
+  .article-title, .home-article-title {
+      font-size: 1.8rem !important;
+      line-height: 1.3 !important;
+  }
+  .article-meta-info, .home-article-meta-info {
+      justify-content: flex-start !important;
+      gap: 12px !important;
+  }
+  :root {
+    --primary-color: #1db5d6;
+    --background-color: #000000;
+  }
   .paginator a.page-number,
   .paginator span.page-number,
   .paginator a.prev,
   .paginator a.next {
-    color: #fff;                     /* chữ số bình thường */
-    background: rgba(0,0,0,0.3);    /* nền số bình thường */
+    color: #fff;
+    background: rgba(0,0,0,0.3);
   }
-
-
-
-
-  /* 3. Hover & focus */
   .paginator a.page-number:hover,
   .paginator span.page-number:hover,
   .paginator a.prev:hover,
@@ -248,25 +235,9 @@
     color: #fff !important;
     background: #1db5d6 !important;
   }
-
-
-
-
-  /* 4. Số hiện tại */
   .paginator span.current {
-    color: #000 !important;          /* chữ số hiện tại */
-    background: #1db5d6 !important;  /* nền số hiện tại */
-  }
-
-
-
-
-  /* 5. Icon next/prev (nếu dùng fontawesome) */
-  .paginator i.fa-regular {
-    color: #000;
-  }
-  .paginator .extend:hover i.fa-regular {
-    color: #fff;
+    color: #000 !important;
+    background: #1db5d6 !important;
   }
 </style>
 
@@ -303,7 +274,7 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"k4butoz.github.io","root":"/","language":"en"};
-    window.theme = {"articles":{"post_meta":{"created_at":false,"updated_at":false},"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","highlight_theme":{"light":"github","dark":"tokyo-night-dark"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#1db5d6","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":false},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":false,"site_uv":false,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":false,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"try with your all heart and soul"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/PokemonSea1.webp"},"title":"I'm penetration tester","subtitle":{"text":["WELCOME =.="],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/K4butoz?tab=repositories","instagram":null,"zhihu":null,"twitter":null,"email":"phong2312005@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Love Yourself","artist":null,"url":"/musics/riverflowsinyou.mp3","cover":"/images/lookChillChill.jpg","lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#27149b","right":"#367df7","transparency":10},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/EvanNotFound/hexo-theme-redefine","Blog":"https://ohevan.com","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":false};
+    window.theme = {"articles":{"post_meta":{"created_at":false,"updated_at":false},"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","highlight_theme":{"light":"github","dark":"default"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#1db5d6","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":false},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":false,"site_uv":false,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":null},"side_tools":{"gear_rotation":false,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"try with your all heart and soul"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/PokemonSea1.webp"},"title":"I'm penetration tester","subtitle":{"text":["WELCOME =.="],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/K4butoz?tab=repositories","instagram":null,"zhihu":null,"twitter":null,"email":"phong2312005@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Love Yourself","artist":null,"url":"/musics/riverflowsinyou.mp3","cover":"/images/lookChillChill.jpg","lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#27149b","right":"#367df7","transparency":10},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/EvanNotFound/hexo-theme-redefine","Blog":"https://ohevan.com","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":false};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -838,7 +809,7 @@
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">[HTB] Interstellar</span>
+						<span class="post-nav-title-item truncate max-w-48">[HTB] DoxPit</span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
